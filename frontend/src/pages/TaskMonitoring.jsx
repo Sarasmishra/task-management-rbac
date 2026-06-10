@@ -37,6 +37,11 @@ const TaskMonitoring = () => {
           Task Monitoring
         </h1>
 
+{tasks.length === 0 ? (
+  <div className="bg-white border rounded-xl p-10 text-center">
+    No Tasks Found
+  </div>
+) : (
         <div className="space-y-4">
           {tasks.map((task) => (
             <div
@@ -75,6 +80,7 @@ const TaskMonitoring = () => {
             </div>
           ))}
         </div>
+)}
       </div>
     </div>
   );

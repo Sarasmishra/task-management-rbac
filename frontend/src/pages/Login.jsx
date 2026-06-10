@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
@@ -8,7 +8,8 @@ import AuthInput from "../components/AuthInput";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login,user } = useAuth();
+
 
   const [formData, setFormData] = useState({
     email: "",
@@ -17,6 +18,15 @@ const Login = () => {
 
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+  if (user) {
+    if (user.role === "Admin") {
+      navigate("/admin");
+    } else {
+      navigate("/");
+    }
+  }
+}, [user, navigate]);
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,

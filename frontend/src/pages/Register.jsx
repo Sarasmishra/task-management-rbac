@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+
+import { useAuth } from "../context/AuthContext";
 
 import api from "../api/axios";
 import AuthInput from "../components/AuthInput";
 
 const Register = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -16,6 +19,15 @@ const Register = () => {
 
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+  if (user) {
+    if (user.role === "Admin") {
+      navigate("/admin");
+    } else {
+      navigate("/");
+    }
+  }
+}, [user, navigate]);
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,

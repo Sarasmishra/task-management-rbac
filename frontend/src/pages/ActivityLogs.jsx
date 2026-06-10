@@ -27,6 +27,11 @@ const ActivityLogs = () => {
         <h1 className="text-3xl font-bold mb-6">
           Activity Logs
         </h1>
+        {logs.length === 0 ? (
+  <div className="bg-white border rounded-xl p-10 text-center">
+    No Activity Logs Found
+  </div>
+) : (
 
         <div className="space-y-4">
           {logs.map((log) => (
@@ -55,6 +60,7 @@ const ActivityLogs = () => {
             </div>
           ))}
         </div>
+)}
       </div>
     </div>
   );

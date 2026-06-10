@@ -19,19 +19,19 @@ const AdminNavbar = () => {
         </h1>
 
         <div className="flex gap-4 items-center">
-          <Link to="/admin">
+          <Link to="/admin" className="hover:text-zinc-500">
             Analytics
           </Link>
 
-          <Link to="/admin/users">
+          <Link to="/admin/users" className="hover:text-zinc-500">
             Users
           </Link>
 
-          <Link to="/admin/tasks">
+          <Link to="/admin/tasks" className="hover:text-zinc-500">
             Tasks
           </Link>
 
-          <Link to="/admin/activity-logs">
+          <Link to="/admin/activity-logs" className="hover:text-zinc-500">
             Logs
           </Link>
 

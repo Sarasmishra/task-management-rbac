@@ -24,9 +24,15 @@ const AdminDashboard = () => {
   useEffect(() => {
     fetchAnalytics();
   }, []);
-
-  if (!analytics)
-    return <div>Loading...</div>;
+if (!analytics) {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <h2 className="text-xl font-semibold">
+        Loading...
+      </h2>
+    </div>
+  );
+}
 
   return (
     <div className="min-h-screen bg-zinc-50">
