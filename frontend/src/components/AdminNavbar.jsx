@@ -34,6 +34,10 @@ const AdminNavbar = () => {
           <Link to="/admin/activity-logs" className="hover:text-zinc-500">
             Logs
           </Link>
+          <Link to="/" className="hover:text-zinc-500">
+  User Dashboard
+</Link>
+
 
           <button
             onClick={handleLogout}
