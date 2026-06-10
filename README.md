@@ -187,6 +187,31 @@ JWT_SECRET=your_secret_key
 
 ---
 
+## Role Management
+
+Newly registered users are assigned the **User** role by default.
+
+To test Admin functionality, update the user's role field in MongoDB from:
+
+```json
+{
+  "role": "User"
+}
+```
+
+to:
+
+```json
+{
+  "role": "Admin"
+}
+```
+
+Then log in again to access the Admin Dashboard.
+ 
+ --- 
+
+ 
 ## Screenshots
 
 ### Login Page
