@@ -32,9 +32,9 @@ const createTask = async (req, res) => {
 
 const getMyTasks = async (req, res) => {
   try {
-    const tasks = await Task.find({
-      createdBy: req.user._id,
-    });
+const tasks = await Task.find({
+  createdBy: req.user._id,
+}).sort({ createdAt: -1 });
 
     return res.status(200).json({
       success: true,
