@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const generateToken = require("../utils/generateToken");
+const createActivityLog = require("../utils/createActivityLog");
 
 const registerUser = async (req, res) => {
   try {
@@ -86,6 +87,10 @@ const loginUser = async (req, res) => {
     }
 
     const token = generateToken(user._id);
+    await createActivityLog({
+  userId: user._id,
+  action: "LOGIN",
+});
 
     return res.status(200).json({
       success: true,

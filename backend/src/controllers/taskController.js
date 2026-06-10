@@ -1,4 +1,5 @@
 const Task = require("../models/Task");
+const createActivityLog = require("../utils/createActivityLog");
 
 const createTask = async (req, res) => {
   try {
@@ -16,6 +17,11 @@ const createTask = async (req, res) => {
       description,
       createdBy: req.user._id,
     });
+    await createActivityLog({
+  userId: req.user._id,
+  action: "TASK_CREATED",
+  taskId: task._id,
+});
 
     return res.status(201).json({
       success: true,
@@ -78,6 +84,11 @@ const updateTask = async (req, res) => {
       }
     );
 
+await createActivityLog({
+  userId: req.user._id,
+  action: "TASK_UPDATED",
+  taskId: task._id,
+});
     return res.status(200).json({
       success: true,
       message: "Task updated successfully",
@@ -112,7 +123,13 @@ const deleteTask = async (req, res) => {
       });
     }
 
+        await createActivityLog({
+  userId: req.user._id,
+  action: "TASK_DELETED",
+  taskId: task._id,
+});
     await Task.findByIdAndDelete(req.params.id);
+
 
     return res.status(200).json({
       success: true,
